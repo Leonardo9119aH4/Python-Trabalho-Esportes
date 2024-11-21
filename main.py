@@ -5,58 +5,70 @@ class MembroEquipe: # Base que a profe deu
         self.posicao = posicao # Posição que o membro ocupa (ex: atacante, defensor)
         self.numero_camisa = numero_camisa # Número da camisa
         self.equipe = equipe # Nome da equipe ou time ao qual pertence
-alunos=[]
+class SistemaCadastro:
+    def __init__(self):
+        self.alunos = []
+    def cadastrarAluno(self):
+        nome=input("Digite o nome do aluno: ")
+        idade=int(input("Digite a idade do aluno: "))
+        posicao=input("Digite a posição em que o membro ocupa: ")
+        numero_camisa=int(input("Digite o número da camisa: "))
+        equipe=input("Digite o nome da equipe que o aluno pertence: ")
+        self.alunos.append(MembroEquipe(nome, idade, posicao, numero_camisa, equipe))
+    def listarAlunos(self):
+        for aluno in self.alunos:
+            print(f"Aluno: {aluno.nome}, idade: {aluno.idade} anos, poisção: {aluno.posicao}, número da camisa: {aluno.numero_camisa}, equipe: {aluno.equipe}.")
+        if len(self.alunos)==0:
+            print("Não há alunos cadastrados")
+    def atualizarAluno(self):
+        while True:
+            alterName = input("Digite o nome do aluno a ser atualizado: ")
+            foundAluno = False
+            for x in range(0, len(self.alunos)):
+                if self.alunos[x].nome == alterName:
+                    foundAluno = True
+                    while True:
+                        opc = int(input("Digite o atributo a ser alterado:\n1 - Nome\n2 - Idade\n3 - Posição\n4 - Número da camisa\n5 - Equipe\n\nSua opção: "))
+                        match (opc):
+                            case 1:
+                                self.alunos[x].nome = input("Digite o novo nome: ")
+                                break
+                            case 2:
+                                self.alunos[x].idade = input("Digite a nova idade: ")
+                                break
+                            case 3:
+                                self.alunos[x].posicao = input("Digite a nova posição: ")
+                                break
+                            case 4:
+                                self.alunos[x].numero_posicao = input("Digite o novo número: ")
+                                break
+                            case 5:
+                                self.alunos[x].equipe = input("Digite a nova equipe: ")
+                                break
+                            case _:
+                                print("Opção inválida!")
+            if not foundAluno:
+                print("Aluno não encontrado!")
+                continue
+            break
+    def deletarAluno(self):
+        nome=input("Digite o nome do aluno a ser deletado: ")
+        for i in range(len(self.alunos)):
+            if self.alunos[i].nome==nome:
+                del self.alunos[i] # não sei se está certo
+
+sistema = SistemaCadastro()
 while True:
     opc = int(input("1. Cadastrar aluno\n2. Listar alunos\n3. Atualizar aluno\n4. Deletar aluno\n5. Sair\nEscolha uma opção: "))
     match(opc):
         case 1:
-            nome=input("Digite o nome do aluno: ")
-            idade=int(input("Digite a idade do aluno: "))
-            posicao=input("Digite a posição em que o membro ocupa: ")
-            numero_camisa=int(input("Digite o número da camisa: "))
-            equipe=input("Digite o nome da equipe que o aluno pertence: ")
-            alunos.append(MembroEquipe(nome, idade, posicao, numero_camisa, equipe))
+            sistema.cadastrarAluno()
         case 2:
-            for aluno in alunos:
-                print(f"Aluno: {aluno.nome}, idade: {aluno.idade} anos, poisção: {aluno.posicao}, número da camisa: {aluno.numero_camisa}, equipe: {aluno.equipe}.")
-            if len(alunos)==0:
-                print("Não há alunos cadastrados")
+            sistema.listarAlunos()
         case 3:
-            while True:
-                alterName = input("Digite o nome do aluno a ser atualizado: ")
-                foundAluno = False
-                for x in range(0, len(alunos)):
-                    if alunos[x].nome == alterName:
-                        foundAluno = True
-                        while True:
-                            opc = int(input("Digite o atributo a ser alterado:\n1 - Nome\n2 - Idade\n3 - Posição\n4 - Número da camisa\n5 - Equipe\n\nSua opção: "))
-                            match (opc):
-                                case 1:
-                                    alunos[x].nome = input("Digite o novo nome: ")
-                                    break
-                                case 2:
-                                    alunos[x].idade = input("Digite a nova idade: ")
-                                    break
-                                case 3:
-                                    alunos[x].posicao = input("Digite a nova posição: ")
-                                    break
-                                case 4:
-                                    alunos[x].numero_posicao = input("Digite o novo número: ")
-                                    break
-                                case 5:
-                                    alunos[x].equipe = input("Digite a nova equipe: ")
-                                    break
-                                case _:
-                                    print("Opção inválida!")
-                if not foundAluno:
-                    print("Aluno não encontrado!")
-                    continue
-                break
+            sistema.atualizarAluno()
         case 4:
-            nome=input("Digite o nome do aluno a ser deletado: ")
-            for i in range(len(alunos)):
-                if alunos[i].nome==nome:
-                    alunos.remove(i) # não sei se está certo
+            sistema.deletarAluno()
         case 5:
             break
         case _:
