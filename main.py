@@ -22,7 +22,36 @@ while True:
             if len(alunos)==0:
                 print("Não há alunos cadastrados")
         case 3:
-            print("Digite o aluno a ser atualizado: ")
+            while True:
+                alterName = input("Digite o nome do aluno a ser atualizado: ")
+                foundAluno = False
+                for x in range(0, len(alunos)):
+                    if alunos[x].nome == alterName:
+                        foundAluno = True
+                        while True:
+                            opc = int(input("Digite o atributo a ser alterado:\n1 - Nome\n2 - Idade\n3 - Posição\n4 - Número da camisa\n5 - Equipe\n\nSua opção: "))
+                            match (opc):
+                                case 1:
+                                    alunos[x].nome = input("Digite o novo nome: ")
+                                    break
+                                case 2:
+                                    alunos[x].idade = input("Digite a nova idade: ")
+                                    break
+                                case 3:
+                                    alunos[x].posicao = input("Digite a nova posição: ")
+                                    break
+                                case 4:
+                                    alunos[x].numero_posicao = input("Digite o novo número: ")
+                                    break
+                                case 5:
+                                    alunos[x].equipe = input("Digite a nova equipe: ")
+                                    break
+                                case _:
+                                    print("Opção inválida!")
+                if not foundAluno:
+                    print("Aluno não encontrado!")
+                    continue
+                break
         case 4:
             nome=input("Digite o nome do aluno a ser deletado: ")
             for i in range(len(alunos)):
