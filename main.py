@@ -5,7 +5,6 @@ class MembroEquipe: # Base que a profe deu
         self.posicao = posicao # Posição que o membro ocupa (ex: atacante, defensor)
         self.numero_camisa = numero_camisa # Número da camisa
         self.equipe = equipe # Nome da equipe ou time ao qual pertence
-
 alunos=[]
 while True:
     opc = int(input("1. Cadastrar aluno\n2. Listar alunos\n3. Atualizar aluno\n4. Deletar aluno\n5. Sair\nEscolha uma opção: "))
@@ -17,6 +16,13 @@ while True:
             numero_camisa=int(input("Digite o número da camisa: "))
             equipe=input("Digite o nome da equipe que o aluno pertence: ")
             alunos.append(MembroEquipe(nome, idade, posicao, numero_camisa, equipe))
+        case 2:
+            for aluno in alunos:
+                print(f"Aluno: {aluno.nome}, idade: {aluno.idade} anos, poisção: {aluno.posicao}, número da camisa: {aluno.numero_camisa}, equipe: {aluno.equipe}.")
+            if len(alunos)==0:
+                print("Não há alunos cadastrados")
+        case 3:
+            print("Digite o aluno a ser atualizado: ")
         case 4:
             nome=input("Digite o nome do aluno a ser deletado: ")
             for i in range(len(alunos)):
