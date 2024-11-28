@@ -56,7 +56,7 @@ class SistemaCadastro:
         for i in range(len(self.alunos)):
             if self.alunos[i].nome==nome:
                 del self.alunos[i] # não sei se está certo
-
+                break
 sistema = SistemaCadastro()
 while True:
     opc = int(input("1. Cadastrar aluno\n2. Listar alunos\n3. Atualizar aluno\n4. Deletar aluno\n5. Sair\nEscolha uma opção: "))
