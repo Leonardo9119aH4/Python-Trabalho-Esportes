@@ -55,7 +55,7 @@ class SistemaCadastro:
         nome=input("Digite o nome do aluno a ser deletado: ")
         for i in range(len(self.alunos)):
             if self.alunos[i].nome==nome:
-                del self.alunos[i] # não sei se está certo
+                del self.alunos[i] 
                 break
 sistema = SistemaCadastro()
 while True:
